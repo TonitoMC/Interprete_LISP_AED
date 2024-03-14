@@ -6,6 +6,14 @@ import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
+/**
+ * Esta clase se encarga de leer el texto de un archivo que contiene el codigo en lisp, separarlo en diferentes
+ * instrucciones y tokenizarlas para que puedan ser interpretadas por un Evaluator
+ * @author Jose Merida - 201105
+ * @author Adrian Lopez - 21357
+ * @version 1.0
+ * @since 13-03-2024
+ */
 public class Parser {
     private Evaluator evaluator;
     public Parser(){
@@ -14,7 +22,17 @@ public class Parser {
     public void eval(){
         System.out.println('1');
     }
+
+    /**
+     * Esta funcion separa una instruccion (con parentesis validos) dentro de lisp
+     * @param input la instruccion por tokenizar
+     * @return un ArrayList de Strings con la instruccion tokenizada
+     */
     public ArrayList<String> tokenize(String input){
+        /**
+         * Crea un nuevo ArrayList para los Tokens, agrega los caracteres especiales a un token especifico
+         * y luego separa palabras por espacios en blanco.
+         */
         ArrayList<String> tokens = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
         char[] specialCharacters = {'(',')','+', '-', '*', '/', '<', '>'};
@@ -36,6 +54,13 @@ public class Parser {
         }
         return tokens;
     }
+
+    /**
+     * Metodo para verificar si un caracter se encuentra dentro de un array
+     * @param p el caracter que se desea verificar
+     * @param array el array en el que se verifica se encuentra el caracter
+     * @return true si se encuentra el caracter, false de lo contrario
+     */
     public boolean contains(char p, char[] array){
         for (char x : array){
             if (x == p){
@@ -44,6 +69,12 @@ public class Parser {
         }
         return false;
     }
+
+    /**
+     * Separa el texto leido del archivo dependiendo de parentesis abiertos / cerrados
+     * @param text el texto para separar
+     * @return un arraylist conteniendo cada string con un parentesis abierto / cerrado valido
+     */
     public ArrayList<String> separate(String text){
         Stack<Character> stack = new Stack<>();
         ArrayList<String> inputs = new ArrayList<>();
@@ -71,6 +102,11 @@ public class Parser {
         }
         return inputs;
     }
+
+    /**
+     * Metodo para leer el archivo que contiene el programa en Lisp
+     * @return un string con el texto del archivo
+     */
     private String readFile(){
         return "s";
     }

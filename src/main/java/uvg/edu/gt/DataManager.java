@@ -2,7 +2,13 @@ package uvg.edu.gt;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * Esta clase se encarga de manejar las variables y las funciones dentro del programa
+ * @author Jose Merida - 201105
+ * @author Adrian Lopez - 21357
+ * @version 1.0
+ * @since 13-03-2024
+ */
 public class DataManager {
     private HashMap<String, Object> variables;
     private HashMap<String, ArrayList<String>> functions;
