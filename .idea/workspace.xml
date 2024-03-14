@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
+      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +71,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710374825363</updated>
-      <workItem from="1710374826391" duration="6486000" />
+      <workItem from="1710374826391" duration="9132000" />
     </task>
+    <task id="LOCAL-00001" summary="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
+      <option name="closed" value="true" />
+      <created>1710381617560</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710381617560</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis" />
   </component>
 </project>
