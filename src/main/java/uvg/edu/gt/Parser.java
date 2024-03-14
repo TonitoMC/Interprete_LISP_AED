@@ -36,7 +36,6 @@ public class Parser {
         }
         return tokens;
     }
-
     public boolean contains(char p, char[] array){
         for (char x : array){
             if (x == p){
