@@ -18,9 +18,10 @@ public class Evaluator {
         arithmetic = new Arithmetic();
         dataManager = new DataManager();
     }
-
     /**
-     * Evalua un ArrayList de tokens para ejecutar instrucciones
+     * Evalua un ArrayList de tokens para ejecutar instrucciones (pendiente agregar returns finales, terminar
+     * de implementar condicionales y definicion de funciones. Tambien pendiente implementar los calculos en si
+     * en demas clases).
      * @param tokenList la lista de Tokens por ejecutar
      * @return un objeto, el output puede ser de tipo string, int, double, entre otros
      */
@@ -29,6 +30,7 @@ public class Evaluator {
         String keyword = tokenList.get(1);
         //Crea un Array de simbolos aritmeticos, se deben agregar todavia diferentes "palabras clave" para comparar
         String[] arithmeticSymbols = {"+", "-", "*", "/"};
+        String[] predicates = {"EQUAL", "<", ">"};
         if (contains(keyword, arithmeticSymbols)){
             /**
              * Recorre el tokenList, evalua la funcion (pendiente) y al encontrar un parentesis abierto se llama
@@ -45,8 +47,32 @@ public class Evaluator {
                     tokenList.add(i, String.valueOf(operationValue));
                     i--;
                 }
+            } //Luego de salir del loop se debe evaluar con los valores actualizados
+        } else if (contains(keyword, predicates)){
+            //Implementar clase de Predicates
+        }
+        else if (keyword.equals("DEFUN")){
+            //Agrega una funcion al data manager, se compone por nombre e instrucciones.
+            ArrayList<String> instructionList = new ArrayList<String>();
+            for (int i = 3; i < tokenList.size()-3; i++)
+                instructionList.add(tokenList.get(i));
+            dataManager.newFunction(tokenList.get(2),instructionList);
+        } else if (keyword.equals("COND")){
+            //Encuentra las condicionales, las evalua y ejecuta las acciones en caso de ser verdaderas, pendiente
+            //agregarlos a un loop para que se puedan ejecutar la cantidad de condicionales necesarias, por el momento
+            //Unicamente evalua 1.
+            int lastIndex = findClosingParenthesis(tokenList, 4);
+            boolean conditionValue = (boolean) eval((ArrayList<String>) tokenList.subList(4, lastIndex));
+            if (conditionValue){
+                int lastIndexAction = findClosingParenthesis(tokenList, lastIndex + 1);
+                eval((ArrayList<String>) tokenList.subList(lastIndex + 1, lastIndexAction));
             }
         }
+        /**
+         * Si no coincide con alguna de las palabras "clave" es una funcion o una variable, falta implementar
+         * estos ultimos casos. La evaluacion de funciones y variables debe tomar precedencia antes de los demas calculos
+         * para "limpiar" el input y que las demas partes del programa funcionen de manera correcta
+         */
         return null;
     }
 

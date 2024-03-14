@@ -17,6 +17,10 @@ public class DataManager {
         functions = new HashMap<>();
     }
 
+    public void newFunction(String name, ArrayList<String> instructions){
+        functions.put(name,instructions);
+    }
+
     public void setVariable(String name, Object value){
         variables.put(name,value);
     }
