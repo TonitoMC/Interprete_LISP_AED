@@ -1,6 +1,8 @@
 package uvg.edu.gt;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Esta clase se encarga de evaluar operaciones aritmeticas, unicamente toma operaciones simplificadas
  * donde no hay operaciones dentro de otras.
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 public class Arithmetic {
     public double eval(ArrayList<String> input) {
         String operator = input.get(1);
-        ArrayList<String> operatorList = (ArrayList<String>) input.subList(2, input.size() - 1);
+        List<String> subList = input.subList(2, input.size() - 1);
+        ArrayList<String> operatorList = new ArrayList<>(subList);
         switch (operator) {
             case "+":
                 double sumCount = 0;
@@ -21,12 +24,23 @@ public class Arithmetic {
                 }
                 return sumCount;
             case "-":
-                break;
+                double subCount = Double.parseDouble(operatorList.get(0));
+                for (int i = 1; i < operatorList.size(); i++){
+                    subCount -= Double.parseDouble(operatorList.get(i));
+                }
+                return subCount;
             case "*":
-                break;
+                double count = 1;
+                for (int i = 0; i < operatorList.size(); i++){
+                    count *= Double.parseDouble(operatorList.get(i));
+                }
+                return count;
             case "/":
-                break;
-            //Pendiente implementar demas funciones, al igual que otros operadores aritmeticos
+                double divCount = Double.parseDouble(operatorList.get(0));
+                for (int i = 1; i < operatorList.size(); i++){
+                    divCount /= Double.parseDouble(operatorList.get(i));
+                }
+                return divCount;
         }
         return 0;
     }

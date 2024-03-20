@@ -2,6 +2,7 @@
 package uvg.edu.gt;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -41,13 +42,17 @@ public class Evaluator {
                 String currentToken = tokenList.get(i);
                 if (currentToken.equals("(")){
                     int firstIndex = i;
-                    int lastIndex = findClosingParenthesis(tokenList,i);
-                    double operationValue = (double) eval((ArrayList<String>) tokenList.subList(firstIndex, lastIndex));
-                    tokenList.subList(i, findClosingParenthesis(tokenList, i)).clear();
-                    tokenList.add(i, String.valueOf(operationValue));
+                    int lastIndex = findClosingParenthesis(tokenList,i) + 1;
+                    List<String> subList = tokenList.subList(firstIndex, lastIndex);
+                    ArrayList<String> subExpression = new ArrayList<>(subList);
+                    double operationValue = (double) eval(subExpression);
+                    tokenList.subList(firstIndex, lastIndex).clear();
+                    tokenList.add(firstIndex, String.valueOf(operationValue));
                     i--;
                 }
-            } //Luego de salir del loop se debe evaluar con los valores actualizados
+            }
+            return arithmetic.eval(tokenList);
+            //Luego de salir del loop se debe evaluar con los valores actualizados
         } else if (contains(keyword, predicates)){
             //Implementar clase de Predicates
         }
