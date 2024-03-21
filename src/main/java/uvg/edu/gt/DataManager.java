@@ -31,6 +31,12 @@ public class DataManager {
     public boolean hasVariable(String name){
         return variables.containsKey(name);
     }
+    public boolean hasFunction(String name){
+        return functions.containsKey(name);
+    }
+    public ArrayList<String> getFunction(String name){
+        return functions.get(name);
+    }
     public void removeVariable(String name){
         variables.remove(name);
     }

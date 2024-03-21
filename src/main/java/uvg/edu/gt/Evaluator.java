@@ -31,10 +31,10 @@ public class Evaluator {
         String keyword = tokenList.get(1);
         //Crea un Array de simbolos aritmeticos, se deben agregar todavia diferentes "palabras clave" para comparar
         String[] arithmeticSymbols = {"+", "-", "*", "/"};
-        String[] predicates = {"EQUAL", "<", ">"};
+        String[] predicates = {"ATOM","EQUAL", "<", ">"};
         if (contains(keyword, arithmeticSymbols)){
             /**
-             * Recorre el tokenList, evalua la funcion (pendiente) y al encontrar un parentesis abierto se llama
+             * Recorre el tokenList, evalua la funcion y al encontrar un parentesis abierto se llama
              * a si mismo sobre un nuevo tokenList partiendo del parentesis abierto hasta el siguiente parentesis
              * valido. Esto permite evaluar variables, funciones y operaciones mas complejas dentro del programa.
              */
@@ -52,9 +52,20 @@ public class Evaluator {
                 }
             }
             return arithmetic.eval(tokenList);
-            //Luego de salir del loop se debe evaluar con los valores actualizados
         } else if (contains(keyword, predicates)){
-            //Implementar clase de Predicates
+            for (int i = 1; i < tokenList.size(); i++){
+                String currentToken = tokenList.get(i);
+                if (currentToken.equals("(")){
+                    int firstIndex = i;
+                    int lastIndex = findClosingParenthesis(tokenList,i) + 1;
+                    List<String> subList = tokenList.subList(firstIndex, lastIndex);
+                    ArrayList<String> subExpression = new ArrayList<>(subList);
+                    double operationValue = (double) eval(subExpression);
+                    tokenList.subList(firstIndex, lastIndex).clear();
+                    tokenList.add(firstIndex, String.valueOf(operationValue));
+                    i--;
+                }
+            }
         }
         else if (keyword.equals("DEFUN")){
             //Agrega una funcion al data manager, se compone por nombre e instrucciones.
@@ -72,6 +83,22 @@ public class Evaluator {
                 int lastIndexAction = findClosingParenthesis(tokenList, lastIndex + 1);
                 eval((ArrayList<String>) tokenList.subList(lastIndex + 1, lastIndexAction));
             }
+        } else if (keyword.equals("SETQ")){
+
+        } else if (isFunctionCall(keyword)){
+            ArrayList<String> functionCallInstrucions = dataManager.getFunction(keyword);
+            int paramEndIndex = findClosingParenthesis(functionCallInstrucions, 0);
+            List<String> subList = functionCallInstrucions.subList(1, paramEndIndex - 1);
+            ArrayList<String> params = new ArrayList<>(subList);
+            functionCallInstrucions.subList(0, paramEndIndex).clear();
+            for (String parameter : params){
+                for (int i = 0; i < functionCallInstrucions.size(); i++){
+                    String instruction = functionCallInstrucions.get(i);
+                    if (parameter.equals(instruction)){
+                        functionCallInstrucions.set(i, parameter);
+                    }
+                }
+            }  return eval(functionCallInstrucions);
         }
         /**
          * Si no coincide con alguna de las palabras "clave" es una funcion o una variable, falta implementar
@@ -80,7 +107,12 @@ public class Evaluator {
          */
         return null;
     }
-
+    private boolean isFunctionCall(String functionName){
+        return dataManager.hasFunction(functionName);
+    }
+    private boolean isVariable(String methodName){
+        return dataManager.hasVariable(methodName);
+    }
     /**
      * Este metodo se utiliza para obtener una funcion o un metodo dde la clase DataManager, normalmente para interpretar
      * tokens que no se han contemplado dentro del programa.
