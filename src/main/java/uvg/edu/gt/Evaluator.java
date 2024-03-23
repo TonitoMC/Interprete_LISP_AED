@@ -86,6 +86,12 @@ public class Evaluator {
         } else if (keyword.equals("SETQ")){
 
         } else if (isFunctionCall(keyword)){
+            //Goes through parameters, evaluates if necessary then gets execution instructions based
+            //on the parameters, executes the instructions.
+
+            //Get parameter list size from function, verify that the parameters match the size
+
+            //Once the parameters have been replaced it SHOULD be able to execute the function properly.
             ArrayList<String> functionCallInstrucions = dataManager.getFunction(keyword);
             int paramEndIndex = findClosingParenthesis(functionCallInstrucions, 0);
             List<String> subList = functionCallInstrucions.subList(1, paramEndIndex - 1);
