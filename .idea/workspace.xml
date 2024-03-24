@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Cambios menores (wuuu)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/FunctionTest.java" afterDir="false" />
+    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Agregada clase Function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/DataManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ArithmeticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ArithmeticTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/EvaluatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/EvaluatorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,32 +37,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.ArithmeticTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ArithmeticTest.testEval.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EvaluatorTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EvaluatorTest.testEval.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ParserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ParserTest.testSeparate.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ArithmeticTest.executor": "Debug",
+    "JUnit.ArithmeticTest.testEval.executor": "Debug",
+    "JUnit.EvaluatorTest.executor": "Debug",
+    "JUnit.EvaluatorTest.testEval.executor": "Debug",
+    "JUnit.FunctionTest.executor": "Run",
+    "JUnit.ParserTest.executor": "Run",
+    "JUnit.ParserTest.testSeparate.executor": "Debug",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="junit.framework.TestCase" />
@@ -69,7 +72,7 @@
       <recent name="uvg.edu.gt" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.EvaluatorTest.testEval">
     <configuration name="ArithmeticTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Proyecto1" />
       <extension name="coverage">
@@ -131,7 +134,8 @@
       <workItem from="1710814922252" duration="10000" />
       <workItem from="1710974336497" duration="3884000" />
       <workItem from="1710985382988" duration="4909000" />
-      <workItem from="1711150549570" duration="2552000" />
+      <workItem from="1711150549570" duration="2688000" />
+      <workItem from="1711297880468" duration="3845000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
       <option name="closed" value="true" />
@@ -189,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710995220282</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Agregada clase Function">
+      <option name="closed" value="true" />
+      <created>1711153230194</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711153230194</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +215,18 @@
     <MESSAGE value="Agregados diferentes casos y tomada nota sobre implementaciones pendientes" />
     <MESSAGE value="Operaciones de aritmetica funcionando correctamente (complejas incluidas)" />
     <MESSAGE value="Cambios menores (wuuu)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios menores (wuuu)" />
+    <MESSAGE value="Agregada clase Function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregada clase Function" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

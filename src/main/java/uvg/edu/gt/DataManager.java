@@ -11,14 +11,15 @@ import java.util.HashMap;
  */
 public class DataManager {
     private HashMap<String, Object> variables;
-    private HashMap<String, ArrayList<String>> functions;
+    private ArrayList<Function> functions;
     public DataManager(){
         variables = new HashMap<>();
-        functions = new HashMap<>();
+        functions = new ArrayList<>();
     }
 
-    public void newFunction(String name, ArrayList<String> instructions){
-        functions.put(name,instructions);
+    public void newFunction(ArrayList<String> parameters, String name, ArrayList<String> instructions){
+        Function newFunction = new Function(parameters, name, instructions);
+        functions.add(newFunction);
     }
 
     public void setVariable(String name, Object value){
@@ -32,10 +33,25 @@ public class DataManager {
         return variables.containsKey(name);
     }
     public boolean hasFunction(String name){
-        return functions.containsKey(name);
+        boolean isInFunctions = false;
+        for(int i =  0; i < functions.size(); i++){
+            String functionName = functions.get(i).getName();
+            if (functionName.equals(name)){
+                isInFunctions = true;
+            }
+        }
+        return isInFunctions;
     }
-    public ArrayList<String> getFunction(String name){
-        return functions.get(name);
+
+    public Function getFunction(String name){
+        boolean isInFunctions = false;
+        for(int i = 0; i < functions.size(); i++){
+            String functionName = functions.get(i).getName();
+            if (functionName.equals(name)){
+                return functions.get(i);
+            }
+        }
+        return null;
     }
     public void removeVariable(String name){
         variables.remove(name);

@@ -13,7 +13,12 @@ public class Function {
         this.name = name;
         this.instructions = instructions;
     }
-
+    public String getName(){
+        return name;
+    }
+    public int getParameterSize(){
+        return parameters.size();
+    }
     /**
      * Este metodo regresa un ArrayList con las instrucciones por ejecutar, busca los parametros y los reemplaza
      * con los parametros de input dentro de la funcion.

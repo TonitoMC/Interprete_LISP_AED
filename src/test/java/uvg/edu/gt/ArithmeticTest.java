@@ -13,7 +13,8 @@ public class ArithmeticTest extends TestCase {
         tokenList.add("+");
         tokenList.add("1");
         tokenList.add("2");
+        tokenList.add("3");
         tokenList.add(")");
-        assertEquals(3.0, arithmetic.eval(tokenList));
+        assertEquals(6.0, arithmetic.eval(tokenList));
     }
 }

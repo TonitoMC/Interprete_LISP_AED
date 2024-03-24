@@ -67,12 +67,19 @@ public class Evaluator {
                 }
             }
         }
-        else if (keyword.equals("DEFUN")){
-            //Agrega una funcion al data manager, se compone por nombre e instrucciones.
-            ArrayList<String> instructionList = new ArrayList<String>();
-            for (int i = 3; i < tokenList.size()-3; i++)
+        else if (keyword.equals("defun")){
+            String functionName = tokenList.get(2);
+            ArrayList<String> parameterList = new ArrayList<>();
+            ArrayList<String> instructionList = new ArrayList<>();
+            int lastIndex = findClosingParenthesis(tokenList, 3);
+            for (int i = 4; i < lastIndex; i++){
+                parameterList.add(tokenList.get(i));
+            }
+            int firstIndex = lastIndex + 1;
+            for (int i = firstIndex; i < tokenList.size() - 1; i++){
                 instructionList.add(tokenList.get(i));
-            dataManager.newFunction(tokenList.get(2),instructionList);
+            }
+            dataManager.newFunction(parameterList, functionName, instructionList);
         } else if (keyword.equals("COND")){
             //Encuentra las condicionales, las evalua y ejecuta las acciones en caso de ser verdaderas, pendiente
             //agregarlos a un loop para que se puedan ejecutar la cantidad de condicionales necesarias, por el momento
@@ -87,24 +94,28 @@ public class Evaluator {
 
         } else if (isFunctionCall(keyword)){
             //Goes through parameters, evaluates if necessary then gets execution instructions based
-            //on the parameters, executes the instructions.
-
-            //Get parameter list size from function, verify that the parameters match the size
-
-            //Once the parameters have been replaced it SHOULD be able to execute the function properly.
-            ArrayList<String> functionCallInstrucions = dataManager.getFunction(keyword);
-            int paramEndIndex = findClosingParenthesis(functionCallInstrucions, 0);
-            List<String> subList = functionCallInstrucions.subList(1, paramEndIndex - 1);
-            ArrayList<String> params = new ArrayList<>(subList);
-            functionCallInstrucions.subList(0, paramEndIndex).clear();
-            for (String parameter : params){
-                for (int i = 0; i < functionCallInstrucions.size(); i++){
-                    String instruction = functionCallInstrucions.get(i);
-                    if (parameter.equals(instruction)){
-                        functionCallInstrucions.set(i, parameter);
-                    }
+            //Starts at indexz 2
+            Function currentFunction = dataManager.getFunction(keyword);
+            int paramSize = currentFunction.getParameterSize();
+            for (int i = 2; i < tokenList.size(); i++){
+                String currentToken = tokenList.get(i);
+                if (currentToken.equals("(")){
+                    int firstIndex = i;
+                    int lastIndex = findClosingParenthesis(tokenList,i) + 1;
+                    List<String> subList = tokenList.subList(firstIndex, lastIndex);
+                    ArrayList<String> subExpression = new ArrayList<>(subList);
+                    double operationValue = (double) eval(subExpression);
+                    tokenList.subList(firstIndex, lastIndex).clear();
+                    tokenList.add(firstIndex, String.valueOf(operationValue));
+                    i--;
                 }
-            }  return eval(functionCallInstrucions);
+            }
+            ArrayList<String> inputParameterList = new ArrayList<>();
+            for (int i = 2; i < paramSize + 2; i++){
+                inputParameterList.add(tokenList.get(i));
+            }
+            ArrayList<String> toEval = currentFunction.evalFunction(inputParameterList);
+            return eval(currentFunction.evalFunction(inputParameterList));
         }
         /**
          * Si no coincide con alguna de las palabras "clave" es una funcion o una variable, falta implementar
@@ -113,8 +124,8 @@ public class Evaluator {
          */
         return null;
     }
-    private boolean isFunctionCall(String functionName){
-        return dataManager.hasFunction(functionName);
+    public boolean isFunctionCall(String functionName){
+        return dataManager.getFunction(functionName) != null;
     }
     private boolean isVariable(String methodName){
         return dataManager.hasVariable(methodName);
