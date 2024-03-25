@@ -32,7 +32,7 @@ public class Evaluator {
         String keyword = tokenList.get(1);
         //Crea un Array de simbolos aritmeticos y demas palabras clave
         String[] arithmeticSymbols = {"+", "-", "*", "/"};
-        String[] predicates = {"ATOM","EQUAL", "<", ">", "="};
+        String[] predicates = {"ATOM", "<", ">", "="};
         //Reemplaza las variables dentro del codigo, unicamente si no se interrumpe por la instruccion quote
         for (int i = 1; i < tokenList.size(); i++){
             String currentToken = tokenList.get(i);
@@ -81,12 +81,34 @@ public class Evaluator {
                 }
             }
             if (keyword.equals("ATOM")){
-
-            } else if (keyword.equals("LIST")){
-
+                if (isVariable(tokenList.get(2))){
+                    Object currentValue = dataManager.getVariable(tokenList.get(2));
+                    if (currentValue instanceof List<?>){
+                        return false;
+                    } else{
+                        return true;
+                    }
+                }
+                //De lo contrario se asume que es alguna instruccion, se evalua la instruccion
+                else {
+                     int firstIndex = 2;
+                     int lastIndex = findClosingParenthesis(tokenList, firstIndex) + 1;
+                     List<String> subList = tokenList.subList(firstIndex, lastIndex);
+                     ArrayList<String> subExpression = new ArrayList<>(subList);
+                     Object currentObject = eval(subExpression);
+                     if (currentObject instanceof List<?>){
+                         return false;
+                     } else {
+                         return true;
+                     }
+                }
             }
-        }
-        else if (keyword.equals("defun")){
+        } else if (keyword.equals("list")){
+            int firstIndex = 3;
+            int lastIndex = findClosingParenthesis(tokenList, firstIndex);
+            List<String> subList = tokenList.subList(firstIndex, lastIndex);
+            return subList;
+        } else if (keyword.equals("defun")){
             /**
              * Si la palabra clave es "defun", crea una nueva funcion con los parametros e instrucciones
              * especificadas.
@@ -179,6 +201,8 @@ public class Evaluator {
             } else {
                 System.out.println(tokenList.get(2));
             }
+        } else if (keyword.equals("QUOTE")){
+            return tokenList.get(2);
         } else{
             //Si no coincide con alguno de los anteriores, retorna el keyword. Esto se utiliza en condicionales donde
             //no se busca ejecutar un set de instrucciones e unicamente evaluar un numero.
@@ -202,15 +226,6 @@ public class Evaluator {
      */
     private boolean isVariable(String methodName){
         return dataManager.hasVariable(methodName);
-    }
-    /**
-     * Este metodo se utiliza para obtener una funcion o un metodo dde la clase DataManager, normalmente para interpretar
-     * tokens que no se han contemplado dentro del programa.
-     * @param toGet el nombre o "key" bajo el cual se encuentra almacenada la variable o funcion
-     * @return la funcion evaluada o la variable utilizada
-     */
-    private Object getUnknown(String toGet){
-        return 1;
     }
     /**
      * Este metodo se utiliza para encontrar el siguiente parentesis valido dentro de un ArrayList, se utiliza

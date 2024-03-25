@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Actualizaciones + RECURSIVIDAD :D">
+    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Agregados mas comentarios + script de LISP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Arithmetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Arithmetic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LispScript.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LispScript.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +152,7 @@
       <workItem from="1710974336497" duration="3884000" />
       <workItem from="1710985382988" duration="4909000" />
       <workItem from="1711150549570" duration="2688000" />
-      <workItem from="1711297880468" duration="26239000" />
+      <workItem from="1711297880468" duration="28429000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
       <option name="closed" value="true" />
@@ -236,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711334488034</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Agregados mas comentarios + script de LISP">
+      <option name="closed" value="true" />
+      <created>1711336558337</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711336558337</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,11 +270,12 @@
     <MESSAGE value="Agregada clase Function" />
     <MESSAGE value="Implementada definicion y evaluacion de funciones" />
     <MESSAGE value="Actualizaciones + RECURSIVIDAD :D" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualizaciones + RECURSIVIDAD :D" />
+    <MESSAGE value="Agregados mas comentarios + script de LISP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregados mas comentarios + script de LISP" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" line="112">
+      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" line="134">
         <watch expression="firstIndex" language="JAVA" />
       </inline-watch>
     </watches-manager>
