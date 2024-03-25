@@ -224,7 +224,7 @@ public class Evaluator {
      * @param functionName el nombre de la funcion
      * @return true si existe una funcion con el nombre, false de lo contrario
      */
-    private boolean isFunctionCall(String functionName){
+    boolean isFunctionCall(String functionName){
         return dataManager.getFunction(functionName) != null;
     }
     /**

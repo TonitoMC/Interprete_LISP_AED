@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Cambios menores">
+    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Implementada funcionalidad ATOM">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LispScript.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LispScript.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +151,7 @@
       <workItem from="1710974336497" duration="3884000" />
       <workItem from="1710985382988" duration="4909000" />
       <workItem from="1711150549570" duration="2688000" />
-      <workItem from="1711297880468" duration="32678000" />
+      <workItem from="1711297880468" duration="33718000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
       <option name="closed" value="true" />
@@ -258,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711342960162</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Implementada funcionalidad ATOM">
+      <option name="closed" value="true" />
+      <created>1711343423720</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711343423720</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +296,8 @@
     <MESSAGE value="Agregados mas comentarios + script de LISP" />
     <MESSAGE value="Funcionamiento 100% excepto LIST y ATOM :c" />
     <MESSAGE value="Cambios menores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios menores" />
+    <MESSAGE value="Implementada funcionalidad ATOM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementada funcionalidad ATOM" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
