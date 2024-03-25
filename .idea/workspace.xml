@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Implementada definicion y evaluacion de funciones">
-      <change afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/PredicatesTest.java" afterDir="false" />
+    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Actualizaciones + RECURSIVIDAD :D">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Arithmetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Arithmetic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/DataManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Predicates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Predicates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/EvaluatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/EvaluatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Function.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +154,7 @@
       <workItem from="1710974336497" duration="3884000" />
       <workItem from="1710985382988" duration="4909000" />
       <workItem from="1711150549570" duration="2688000" />
-      <workItem from="1711297880468" duration="24261000" />
+      <workItem from="1711297880468" duration="26239000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
       <option name="closed" value="true" />
@@ -231,11 +228,30 @@
       <option name="project" value="LOCAL" />
       <updated>1711301904187</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Actualizaciones + RECURSIVIDAD :D">
+      <option name="closed" value="true" />
+      <created>1711334488034</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711334488034</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis" />
@@ -247,11 +263,12 @@
     <MESSAGE value="Cambios menores (wuuu)" />
     <MESSAGE value="Agregada clase Function" />
     <MESSAGE value="Implementada definicion y evaluacion de funciones" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementada definicion y evaluacion de funciones" />
+    <MESSAGE value="Actualizaciones + RECURSIVIDAD :D" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizaciones + RECURSIVIDAD :D" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" line="92">
+      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" line="112">
         <watch expression="firstIndex" language="JAVA" />
       </inline-watch>
     </watches-manager>

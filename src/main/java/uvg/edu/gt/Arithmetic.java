@@ -12,7 +12,13 @@ import java.util.List;
  * @since 13-03-2024
  */
 public class Arithmetic {
+    /**
+     * Este metodo se encarga de expresiones aritmeticas simnples
+     * @param input un ArrayList con los Tokens por procesar
+     * @return el resultado de la evaluacion
+     */
     public double eval(ArrayList<String> input) {
+        //Crea una lista con los operadores e identifica el simbolo del operador "*, +, etc."
         String operator = input.get(1);
         List<String> subList = input.subList(2, input.size() - 1);
         ArrayList<String> operatorList = new ArrayList<>(subList);

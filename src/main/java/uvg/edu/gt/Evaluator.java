@@ -28,11 +28,12 @@ public class Evaluator {
      * @return un objeto, el output puede ser de tipo string, int, double, entre otros
      */
     public Object eval(ArrayList<String> tokenList){
-        //Toma una "palabra clave" que es el token que sigue inmediatamente al parentesdis abierto
+        //Toma una "palabra clave" que es el token que sigue inmediatamente al parentesis abierto
         String keyword = tokenList.get(1);
-        //Crea un Array de simbolos aritmeticos, se deben agregar todavia diferentes "palabras clave" para comparar
+        //Crea un Array de simbolos aritmeticos y demas palabras clave
         String[] arithmeticSymbols = {"+", "-", "*", "/"};
-        String[] predicates = {"ATOM","EQUAL", "<", ">"};
+        String[] predicates = {"ATOM","EQUAL", "<", ">", "="};
+        //Reemplaza las variables dentro del codigo, unicamente si no se interrumpe por la instruccion quote
         for (int i = 1; i < tokenList.size(); i++){
             String currentToken = tokenList.get(i);
             String previousToken = tokenList.get(i-1);
@@ -61,6 +62,11 @@ public class Evaluator {
             }
             return arithmetic.eval(tokenList);
         } else if (contains(keyword, predicates)){
+            /**
+             * Recorre el tokenList, evalua la funcion y al encontrar un parentesis abierto se llama a si mismo sobre
+             * un nuevo tokenList partiendo del parentesis abierto hasta el siguiente parentesis valido. Esto permite
+             * evaluar variables, funciones y operaciones mas complejas dentro del programa.
+             */
             for (int i = 1; i < tokenList.size(); i++){
                 String currentToken = tokenList.get(i);
                 if (currentToken.equals("(")){
@@ -68,14 +74,23 @@ public class Evaluator {
                     int lastIndex = findClosingParenthesis(tokenList,i) + 1;
                     List<String> subList = tokenList.subList(firstIndex, lastIndex);
                     ArrayList<String> subExpression = new ArrayList<>(subList);
-                    double operationValue = (double) eval(subExpression);
+                    Object operationValue = eval(subExpression);
                     tokenList.subList(firstIndex, lastIndex).clear();
                     tokenList.add(firstIndex, String.valueOf(operationValue));
                     i--;
                 }
             }
+            if (keyword.equals("ATOM")){
+
+            } else if (keyword.equals("LIST")){
+
+            }
         }
         else if (keyword.equals("defun")){
+            /**
+             * Si la palabra clave es "defun", crea una nueva funcion con los parametros e instrucciones
+             * especificadas.
+             */
             String functionName = tokenList.get(2);
             ArrayList<String> parameterList = new ArrayList<>();
             ArrayList<String> instructionList = new ArrayList<>();
@@ -89,6 +104,11 @@ public class Evaluator {
             }
             dataManager.newFunction(parameterList, functionName, instructionList);
         } else if (keyword.equals("COND")){
+            /**
+             * Si es un condicional, recorre las condiciones y en caso de ser ciertas ejecuta las instrucciones
+             * dentro del siguiente parentesis. Luego de esto salta a la siguiente condicional, si todas las condiciones
+             * han sido falsas ejecuta el codigo con una "t" como condicion (el default).
+             */
             for (int i = 2; i < tokenList.size();){
                 int firstIndex = i+1;
                 if (tokenList.get(firstIndex).equals("(")) {
@@ -113,10 +133,18 @@ public class Evaluator {
                 }
             }
         } else if (keyword.equals("SETQ")){
+            /**
+             * Crea una nueva variable en el dataManager
+             */
             String variableName = tokenList.get(2);
             String variableValue = tokenList.get(3);
             dataManager.newVariable(variableName, variableValue);
         } else if (isFunctionCall(keyword)){
+            /**
+             * Si el Keyword es el nombre de una funcion, extrae los parametros y pide a la funcion que los
+             * reemplace dentro de las instrucciones. Luego de esto, retorna el valor de la funcion evaluada
+             * con los parametros sustituidos.
+             */
             Function currentFunction = dataManager.getFunction(keyword);
             int paramSize = currentFunction.getParameterSize();
             for (int i = 2; i < tokenList.size(); i++){
@@ -139,6 +167,9 @@ public class Evaluator {
             ArrayList<String> mod = currentFunction.evalFunction(inputParameterList);
             return eval(mod);
         } else if (keyword.equals("print")){
+            /**
+             * Imprime los valores, evalua si encuentra un parentesis abierto.
+             */
             if (tokenList.get(2).equals("(")){
                 int firstIndex = 2;
                 int lastIndex = findClosingParenthesis(tokenList, firstIndex) + 1;
@@ -149,18 +180,26 @@ public class Evaluator {
                 System.out.println(tokenList.get(2));
             }
         } else{
+            //Si no coincide con alguno de los anteriores, retorna el keyword. Esto se utiliza en condicionales donde
+            //no se busca ejecutar un set de instrucciones e unicamente evaluar un numero.
             return keyword;
         }
-        /**
-         * Si no coincide con alguna de las palabras "clave" es una funcion o una variable, falta implementar
-         * estos ultimos casos. La evaluacion de funciones y variables debe tomar precedencia antes de los demas calculos
-         * para "limpiar" el input y que las demas partes del programa funcionen de manera correcta
-         */
+
         return null;
     }
+    /**
+     * Verifica si un String es el nombre de alguna funcion
+     * @param functionName el nombre de la funcion
+     * @return true si existe una funcion con el nombre, false de lo contrario
+     */
     public boolean isFunctionCall(String functionName){
         return dataManager.getFunction(functionName) != null;
     }
+    /**
+     * Verifica si un String es el nombre de alguna variable
+     * @param methodName el nombre de la varfiable
+     * @return true si existe una variable con el nombre, false de lo contrario
+     */
     private boolean isVariable(String methodName){
         return dataManager.hasVariable(methodName);
     }
@@ -173,7 +212,6 @@ public class Evaluator {
     private Object getUnknown(String toGet){
         return 1;
     }
-
     /**
      * Este metodo se utiliza para encontrar el siguiente parentesis valido dentro de un ArrayList, se utiliza
      * unicamente dentro del mismo Evaluator para determinar el intervalo de la siguiente funcion a evaluar
@@ -195,7 +233,6 @@ public class Evaluator {
         }
         return openParenCount;
     }
-
     /**
      * Metodo para verificar si un caracter se encuentra dentro de un array
      * @param p el caracter que se desea verificar

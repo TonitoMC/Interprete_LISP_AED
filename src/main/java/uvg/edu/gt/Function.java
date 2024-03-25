@@ -3,7 +3,13 @@ package uvg.edu.gt;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
-
+/**
+ * Esta clase se utiliza para manejar los datos relacionados a funciones
+ * @author Jose Merida - 201105
+ * @author Adrian Lopez - 21357
+ * @version 1.0
+ * @since 13-03-2024
+ */
 public class Function {
     private List<String> parameters;
     private String name;
@@ -13,9 +19,19 @@ public class Function {
         this.name = name;
         this.instructions = instructions;
     }
+
+    /**
+     * Getter para el nombre de la funcion
+     * @return el nombre de la funcion
+     */
     public String getName(){
         return name;
     }
+
+    /**
+     * Retorna la cantidad de parametros que toma
+     * @return la cantidad de parametros que toma
+     */
     public int getParameterSize(){
         return parameters.size();
     }

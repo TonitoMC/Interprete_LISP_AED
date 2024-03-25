@@ -11,7 +11,13 @@ import java.util.List;
  * @since 13-03-2024
  */
 public class Predicates {
+    /**
+     * Evalua predicados simples, es decir un parentesis abierto y un solo parentesis cerrando la expresion.
+     * @param input un ArrayList con los tokens por evaluar
+     * @return true o false, dependiendo de la evaluacion
+     */
     public boolean eval(ArrayList<String> input) {
+        //Encuentra el operador y los operandos
         String operator = input.get(1);
         List<String> subList = input.subList(2, input.size() - 1);
         ArrayList<String> operatorList = new ArrayList<>(subList);
