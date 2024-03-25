@@ -7,9 +7,6 @@ import java.util.List;
 
 public class ParserTest extends TestCase {
 
-    public void testEval() {
-    }
-
     public void testTokenize() {
         Parser parser = new Parser();
         String text = "(text1 (text2 text3 (text5)))";

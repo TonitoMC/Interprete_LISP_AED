@@ -37,7 +37,7 @@ public class Evaluator {
         for (int i = 1; i < tokenList.size(); i++){
             String currentToken = tokenList.get(i);
             String previousToken = tokenList.get(i-1);
-            if (isVariable(currentToken) && !previousToken.equals("QUOTE")){
+            if (isVariable(currentToken) && !previousToken.equalsIgnoreCase("QUOTE")){
                 tokenList.set(i, (String) dataManager.getVariable(currentToken));
             }
         }
@@ -80,7 +80,7 @@ public class Evaluator {
                     i--;
                 }
             }
-            if (keyword.equals("ATOM")){
+            if (keyword.equalsIgnoreCase("ATOM")){
                 if (isVariable(tokenList.get(2))){
                     Object currentValue = dataManager.getVariable(tokenList.get(2));
                     if (currentValue instanceof List<?>){
@@ -103,12 +103,12 @@ public class Evaluator {
                      }
                 }
             }
-        } else if (keyword.equals("list")){
+        } else if (keyword.equalsIgnoreCase("list")){
             int firstIndex = 3;
             int lastIndex = findClosingParenthesis(tokenList, firstIndex);
             List<String> subList = tokenList.subList(firstIndex, lastIndex);
             return subList;
-        } else if (keyword.equals("defun")){
+        } else if (keyword.equalsIgnoreCase("defun")){
             /**
              * Si la palabra clave es "defun", crea una nueva funcion con los parametros e instrucciones
              * especificadas.
@@ -125,7 +125,7 @@ public class Evaluator {
                 instructionList.add(tokenList.get(i));
             }
             dataManager.newFunction(parameterList, functionName, instructionList);
-        } else if (keyword.equals("COND")){
+        } else if (keyword.equalsIgnoreCase("COND")){
             /**
              * Si es un condicional, recorre las condiciones y en caso de ser ciertas ejecuta las instrucciones
              * dentro del siguiente parentesis. Luego de esto salta a la siguiente condicional, si todas las condiciones
@@ -154,7 +154,7 @@ public class Evaluator {
                     return eval(subExpressionT);
                 }
             }
-        } else if (keyword.equals("SETQ")){
+        } else if (keyword.equalsIgnoreCase("SETQ")){
             /**
              * Crea una nueva variable en el dataManager
              */
@@ -188,7 +188,7 @@ public class Evaluator {
             }
             ArrayList<String> mod = currentFunction.evalFunction(inputParameterList);
             return eval(mod);
-        } else if (keyword.equals("print")){
+        } else if (keyword.equalsIgnoreCase("print")){
             /**
              * Imprime los valores, evalua si encuentra un parentesis abierto.
              */
@@ -201,14 +201,13 @@ public class Evaluator {
             } else {
                 System.out.println(tokenList.get(2));
             }
-        } else if (keyword.equals("QUOTE")){
+        } else if (keyword.equalsIgnoreCase("QUOTE")){
             return tokenList.get(2);
         } else{
             //Si no coincide con alguno de los anteriores, retorna el keyword. Esto se utiliza en condicionales donde
             //no se busca ejecutar un set de instrucciones e unicamente evaluar un numero.
             return keyword;
         }
-
         return null;
     }
     /**
@@ -216,7 +215,7 @@ public class Evaluator {
      * @param functionName el nombre de la funcion
      * @return true si existe una funcion con el nombre, false de lo contrario
      */
-    public boolean isFunctionCall(String functionName){
+    private boolean isFunctionCall(String functionName){
         return dataManager.getFunction(functionName) != null;
     }
     /**

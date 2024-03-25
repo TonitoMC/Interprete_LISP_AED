@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Agregados mas comentarios + script de LISP">
+    <list default="true" id="9b12a577-b98c-499a-8538-75288ac1b489" name="Changes" comment="Funcionamiento 100% excepto LIST y ATOM :c">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LispScript.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LispScript.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uvg/edu/gt/Evaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/uvg/edu/gt/ParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +39,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
-    "JUnit.ArithmeticTest.executor": "Debug",
+    "JUnit.ArithmeticTest.executor": "Run",
     "JUnit.ArithmeticTest.testEval.executor": "Debug",
     "JUnit.EvaluatorTest.executor": "Run",
     "JUnit.EvaluatorTest.testEval.executor": "Run",
@@ -152,7 +154,7 @@
       <workItem from="1710974336497" duration="3884000" />
       <workItem from="1710985382988" duration="4909000" />
       <workItem from="1711150549570" duration="2688000" />
-      <workItem from="1711297880468" duration="28429000" />
+      <workItem from="1711297880468" duration="31899000" />
     </task>
     <task id="LOCAL-00001" summary="Agregado primer metodo &quot;separate&quot; para separar las funciones de Lisp conforme sus parentesis">
       <option name="closed" value="true" />
@@ -242,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711336558337</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Funcionamiento 100% excepto LIST y ATOM :c">
+      <option name="closed" value="true" />
+      <created>1711338650682</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711338650682</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +281,8 @@
     <MESSAGE value="Implementada definicion y evaluacion de funciones" />
     <MESSAGE value="Actualizaciones + RECURSIVIDAD :D" />
     <MESSAGE value="Agregados mas comentarios + script de LISP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregados mas comentarios + script de LISP" />
+    <MESSAGE value="Funcionamiento 100% excepto LIST y ATOM :c" />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionamiento 100% excepto LIST y ATOM :c" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
