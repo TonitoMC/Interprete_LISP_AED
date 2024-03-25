@@ -22,7 +22,7 @@ public class DataManager {
         functions.add(newFunction);
     }
 
-    public void setVariable(String name, Object value){
+    public void newVariable(String name, Object value){
         variables.put(name,value);
     }
 
@@ -44,7 +44,6 @@ public class DataManager {
     }
 
     public Function getFunction(String name){
-        boolean isInFunctions = false;
         for(int i = 0; i < functions.size(); i++){
             String functionName = functions.get(i).getName();
             if (functionName.equals(name)){

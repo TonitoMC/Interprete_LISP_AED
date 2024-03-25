@@ -4,7 +4,6 @@ package uvg.edu.gt;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 /**
  * Esta clase se encarga de evaluar los inputs tokenizados por Parser
  * @author Jose Merida - 201105
@@ -15,9 +14,11 @@ import java.util.Objects;
 public class Evaluator {
     private Arithmetic arithmetic;
     private DataManager dataManager;
+    private Predicates pred;
     public Evaluator(){
         arithmetic = new Arithmetic();
         dataManager = new DataManager();
+        pred = new Predicates();
     }
     /**
      * Evalua un ArrayList de tokens para ejecutar instrucciones (pendiente agregar returns finales, terminar
@@ -32,6 +33,13 @@ public class Evaluator {
         //Crea un Array de simbolos aritmeticos, se deben agregar todavia diferentes "palabras clave" para comparar
         String[] arithmeticSymbols = {"+", "-", "*", "/"};
         String[] predicates = {"ATOM","EQUAL", "<", ">"};
+        for (int i = 1; i < tokenList.size(); i++){
+            String currentToken = tokenList.get(i);
+            String previousToken = tokenList.get(i-1);
+            if (isVariable(currentToken) && !previousToken.equals("QUOTE")){
+                tokenList.set(i, (String) dataManager.getVariable(currentToken));
+            }
+        }
         if (contains(keyword, arithmeticSymbols)){
             /**
              * Recorre el tokenList, evalua la funcion y al encontrar un parentesis abierto se llama
@@ -45,7 +53,7 @@ public class Evaluator {
                     int lastIndex = findClosingParenthesis(tokenList,i) + 1;
                     List<String> subList = tokenList.subList(firstIndex, lastIndex);
                     ArrayList<String> subExpression = new ArrayList<>(subList);
-                    double operationValue = (double) eval(subExpression);
+                    Object operationValue =  eval(subExpression);
                     tokenList.subList(firstIndex, lastIndex).clear();
                     tokenList.add(firstIndex, String.valueOf(operationValue));
                     i--;
@@ -81,20 +89,34 @@ public class Evaluator {
             }
             dataManager.newFunction(parameterList, functionName, instructionList);
         } else if (keyword.equals("COND")){
-            //Encuentra las condicionales, las evalua y ejecuta las acciones en caso de ser verdaderas, pendiente
-            //agregarlos a un loop para que se puedan ejecutar la cantidad de condicionales necesarias, por el momento
-            //Unicamente evalua 1.
-            int lastIndex = findClosingParenthesis(tokenList, 4);
-            boolean conditionValue = (boolean) eval((ArrayList<String>) tokenList.subList(4, lastIndex));
-            if (conditionValue){
-                int lastIndexAction = findClosingParenthesis(tokenList, lastIndex + 1);
-                eval((ArrayList<String>) tokenList.subList(lastIndex + 1, lastIndexAction));
+            for (int i = 2; i < tokenList.size();){
+                int firstIndex = i+1;
+                if (tokenList.get(firstIndex).equals("(")) {
+                    int lastIndex = findClosingParenthesis(tokenList, firstIndex) + 1;
+                    List<String> subList = tokenList.subList(firstIndex, lastIndex);
+                    ArrayList<String> subExpression = new ArrayList<>(subList);
+                    int firstIndexCond = lastIndex;
+                    int lastIndexCond = findClosingParenthesis(tokenList, firstIndexCond) + 1;
+                    List<String> subListCond = tokenList.subList(firstIndexCond, lastIndexCond);
+                    ArrayList<String> subExpressionCond = new ArrayList<>(subListCond);
+                    if (pred.eval(subExpression)) {
+                        return eval(subExpressionCond);
+                    } else {
+                        i = lastIndexCond + 1;
+                    }
+                } else {
+                    int firstIndexT = firstIndex + 1;
+                    int lastIndexT = findClosingParenthesis(tokenList, firstIndexT) + 1;
+                    List<String> subListT = tokenList.subList(firstIndexT, lastIndexT);
+                    ArrayList<String> subExpressionT = new ArrayList<>(subListT);
+                    return eval(subExpressionT);
+                }
             }
         } else if (keyword.equals("SETQ")){
-
+            String variableName = tokenList.get(2);
+            String variableValue = tokenList.get(3);
+            dataManager.newVariable(variableName, variableValue);
         } else if (isFunctionCall(keyword)){
-            //Goes through parameters, evaluates if necessary then gets execution instructions based
-            //Starts at indexz 2
             Function currentFunction = dataManager.getFunction(keyword);
             int paramSize = currentFunction.getParameterSize();
             for (int i = 2; i < tokenList.size(); i++){
@@ -114,8 +136,20 @@ public class Evaluator {
             for (int i = 2; i < paramSize + 2; i++){
                 inputParameterList.add(tokenList.get(i));
             }
-            ArrayList<String> toEval = currentFunction.evalFunction(inputParameterList);
-            return eval(currentFunction.evalFunction(inputParameterList));
+            ArrayList<String> mod = currentFunction.evalFunction(inputParameterList);
+            return eval(mod);
+        } else if (keyword.equals("print")){
+            if (tokenList.get(2).equals("(")){
+                int firstIndex = 2;
+                int lastIndex = findClosingParenthesis(tokenList, firstIndex) + 1;
+                List<String> subList = tokenList.subList(firstIndex, lastIndex);
+                ArrayList<String> subExpression = new ArrayList<>(subList);
+                System.out.println(eval(subExpression));
+            } else {
+                System.out.println(tokenList.get(2));
+            }
+        } else{
+            return keyword;
         }
         /**
          * Si no coincide con alguna de las palabras "clave" es una funcion o una variable, falta implementar

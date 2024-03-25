@@ -16,5 +16,23 @@ public class EvaluatorTest extends TestCase {
         evaluator.eval(defunList);
         assertTrue(evaluator.isFunctionCall("sumar-tres-numeros"));
         assertEquals(6.0, evaluator.eval(callFuncList));
+
+        String[] condArray = {"(", "COND", "(", "(", "<", "1", "2", ")", "(", "+", "1", "2", ")", ")", ")"};
+        ArrayList<String> condList = new ArrayList<>(Arrays.asList(condArray));
+        assertEquals(3.0, evaluator.eval(condList));
+
+        ArrayList<String> tokenList = new ArrayList<>();
+        tokenList.add("(");
+        tokenList.add("*");
+        tokenList.add("3");
+        tokenList.add("(");
+        tokenList.add("+");
+        tokenList.add("4");
+        tokenList.add("1");
+        tokenList.add(")");
+        tokenList.add("4");
+        tokenList.add(")");
+
+        assertEquals(60.0, evaluator.eval(tokenList));
     }
 }

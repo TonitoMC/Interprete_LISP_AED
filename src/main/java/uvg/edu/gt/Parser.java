@@ -1,6 +1,9 @@
 
 package uvg.edu.gt;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -19,10 +22,14 @@ public class Parser {
     public Parser(){
         evaluator = new Evaluator();
     }
-    public void eval(){
-        System.out.println('1');
+    public void runProgram(){
+        String fileText = readFile();
+        ArrayList<String> instructions = separate(fileText);
+        for (String instruction : instructions){
+            ArrayList<String> tokenList = tokenize(instruction);
+            evaluator.eval(tokenList);
+        }
     }
-
     /**
      * Esta funcion separa una instruccion (con parentesis validos) dentro de lisp
      * @param input la instruccion por tokenizar
@@ -54,7 +61,6 @@ public class Parser {
         }
         return tokens;
     }
-
     /**
      * Metodo para verificar si un caracter se encuentra dentro de un array
      * @param p el caracter que se desea verificar
@@ -108,7 +114,16 @@ public class Parser {
      * @return un string con el texto del archivo
      */
     private String readFile(){
-        return "s";
+        String line;
+        StringBuilder output = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader("LispScript.txt"))){
+            while ((line = br.readLine()) != null){
+                output.append(line);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return output.toString();
     }
 
 }
