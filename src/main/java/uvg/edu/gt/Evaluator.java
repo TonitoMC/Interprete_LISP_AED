@@ -141,14 +141,22 @@ public class Evaluator {
                     int lastIndex = findClosingParenthesis(tokenList, firstIndex) + 1;
                     List<String> subList = tokenList.subList(firstIndex, lastIndex);
                     ArrayList<String> subExpression = new ArrayList<>(subList);
-                    int firstIndexCond = lastIndex;
-                    int lastIndexCond = findClosingParenthesis(tokenList, firstIndexCond) + 1;
-                    List<String> subListCond = tokenList.subList(firstIndexCond, lastIndexCond);
-                    ArrayList<String> subExpressionCond = new ArrayList<>(subListCond);
-                    if (pred.eval(subExpression)) {
-                        return eval(subExpressionCond);
+                    if (tokenList.get(lastIndex).equals("(")) {
+                        int firstIndexCond = lastIndex;
+                        int lastIndexCond = findClosingParenthesis(tokenList, firstIndexCond) + 1;
+                        List<String> subListCond = tokenList.subList(firstIndexCond, lastIndexCond);
+                        ArrayList<String> subExpressionCond = new ArrayList<>(subListCond);
+                        if (pred.eval(subExpression)) {
+                            return eval(subExpressionCond);
+                        } else {
+                            i = lastIndexCond + 1;
+                        }
                     } else {
-                        i = lastIndexCond + 1;
+                        if (pred.eval(subExpression)){
+                            return tokenList.get(lastIndex);
+                        } else {
+                            i = lastIndex + 2;
+                        }
                     }
                 } else {
                     int firstIndexT = firstIndex + 1;
