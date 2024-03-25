@@ -1,6 +1,8 @@
 
 package uvg.edu.gt;
 
+import com.sun.media.sound.SF2InstrumentRegion;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,7 +40,9 @@ public class Evaluator {
             String currentToken = tokenList.get(i);
             String previousToken = tokenList.get(i-1);
             if (isVariable(currentToken) && !previousToken.equalsIgnoreCase("QUOTE")){
-                tokenList.set(i, (String) dataManager.getVariable(currentToken));
+                if (!(dataManager.getVariable(currentToken) instanceof List<?>)) {
+                    tokenList.set(i, (String) dataManager.getVariable(currentToken));
+                }
             }
         }
         if (contains(keyword, arithmeticSymbols)){
@@ -155,11 +159,16 @@ public class Evaluator {
                 }
             }
         } else if (keyword.equalsIgnoreCase("SETQ")){
-            /**
-             * Crea una nueva variable en el dataManager
-             */
             String variableName = tokenList.get(2);
-            String variableValue = tokenList.get(3);
+            Object variableValue = null;
+            if (tokenList.get(3).equals("(")){
+                int lastIndex = findClosingParenthesis(tokenList, 2);
+                List<String> subList = tokenList.subList(3, lastIndex + 1);
+                ArrayList<String> subExpression = new ArrayList<>(subList);
+                variableValue = eval(subExpression);
+            } else {
+                variableValue = tokenList.get(3);
+            }
             dataManager.newVariable(variableName, variableValue);
         } else if (isFunctionCall(keyword)){
             /**
